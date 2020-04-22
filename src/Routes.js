@@ -11,8 +11,8 @@ const BeforeRegis = createStackNavigator(
       screen: RegisterScreen,
       headerMode: 'none',
       navigationOptions: ({navigation}) => ({
-        headerShown: false,
-    }),
+        header: {visible: false},
+      }),
     },
   },
   {
@@ -26,12 +26,15 @@ const AfterRegis = createStackNavigator(
       screen: LoginScreen,
       headerMode: 'none',
       navigationOptions: ({navigation}) => ({
-        headerShown: false,
-    }),
+        header: {visible: false},
+      }),
     },
   },
   {
     initialRouteName: 'Login',
+    defaultNavigationOptions: () => ({
+      headerShown: false,
+    }),
   },
 );
 
@@ -42,11 +45,14 @@ const AfterSigin = createStackNavigator(
       headerMode: 'none',
       navigationOptions: ({navigation}) => ({
         headerShown: false,
-    }),
+      }),
     },
   },
   {
     initialRouteName: 'Dashboard',
+    defaultNavigationOptions: () => ({
+      headerShown: false,
+    }),
   },
 );
 
@@ -59,22 +65,26 @@ const AppNavigator = createStackNavigator(
     }),
     Login: AfterRegis,
     navigationOptions: ({navigation}) => ({
-        headerShown: false,
-        title: null,
+      headerShown: false,
+      title: null,
     }),
     App: AfterSigin,
     navigationOptions: ({navigation}) => ({
-        headerShown: false,
-        title: null,
+      headerShown: false,
+      title: 'asu',
+      headerMode: 'none',
     }),
     AuthLoadingScreen: AuthScreen,
     navigationOptions: ({navigation}) => ({
-        headerShown: false,
-        title: null,
+      headerShown: false,
+      title: null,
     }),
   },
   {
     initialRouteName: 'AuthLoadingScreen',
+    defaultNavigationOptions: () => ({
+      headerShown: false,
+    }),
   },
 );
 
