@@ -74,7 +74,7 @@ const AppNavigator = createStackNavigator(
     }),
   },
   {
-    initialRouteName: 'Register',
+    initialRouteName: 'AuthLoadingScreen',
   },
 );
 

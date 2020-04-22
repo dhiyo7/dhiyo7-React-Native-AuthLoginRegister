@@ -1,27 +1,27 @@
-//import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Container, Header, Content, Button, Text } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
 
-// create a component
-class DashboardScreen extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>DashboardScreen</Text>
-            </View>
-        );
+
+export default class ButtonRoundedExample extends Component {
+
+    doLogout() {
+        AsyncStorage.removeItem('token')
+        .then(result => {
+            this.props.navigation.navigate('Login')
+        })
     }
+
+  render() {
+    return (
+      <Container>
+        <Content>
+          <Button padder rounded danger style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+          onPress={() => this.doLogout()}>
+            <Text>Logout</Text>
+          </Button>
+        </Content>
+      </Container>
+    );
+  }
 }
-
-// define your styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
-});
-
-//make this component available to the app
-export default DashboardScreen;

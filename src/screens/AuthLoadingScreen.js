@@ -1,13 +1,29 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // create a component
 class AuthScreen extends Component {
+
+    constructor() {
+        super();
+        this.checkToken()
+    }
+
+    checkToken = async () => {
+        const token = await AsyncStorage.getItem('token')
+        if (token) {
+            this.props.navigation.navigate('App')
+        } else {
+            this.props.navigation.navigate('Login')
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>AuthloadingScreen</Text>
+                <ActivityIndicator/>
             </View>
         );
     }
@@ -18,9 +34,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
+        alignItems: 'center',    },
 });
 
 //make this component available to the app

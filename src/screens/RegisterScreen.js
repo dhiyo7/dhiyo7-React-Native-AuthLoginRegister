@@ -14,6 +14,42 @@ import {
 } from 'native-base';
 // create a component
 class RegisterScreen extends Component {
+  state ={
+    name: "cobalagi",
+    email: "cobalagi@gmail.com",
+    address:"Pemalang adohe ora umum",
+    password: "12345678",
+  }
+
+  // state ={
+  //   email: "",
+  //   password: "",
+  // }
+
+  oncChangeHandle(state, value){
+    thsis.setState({
+      [state]: value
+    })
+  }
+
+  doLogin(){
+    const {name, email, address, password} = this.state;
+    const req = {
+      "name": name,
+      "email": email,
+      "address": address,
+      "password": password
+    }
+    axios.post("https://plug-plant.herokuapp.com/user/register", req)
+    .then(
+      res => {
+        console.log(res.data)
+      },
+      error => {
+        alert("Something went wrong")
+      }
+    )
+  }
     render() {
         return ( <Container>
             <Content padder>
@@ -28,16 +64,24 @@ class RegisterScreen extends Component {
     
               <Body>
                 <Item rounded style={{marginTop: 30}}>
-                  <Input placeholder="Input Nama" />
+                  <Input placeholder="Input Nama" 
+                  value={this.state.name}
+                  onChangeText={value => this.setState({ name: value })}/>
                 </Item>
                 <Item rounded style={{marginTop: 20}}>
-                  <Input placeholder="Input Email" />
+                  <Input placeholder="Input Email" 
+                  value={this.state.email}
+                  onChangeText={value => this.setState({ email: value })}/>
                 </Item>
                 <Item rounded style={{marginTop: 20}}>
-                  <Input placeholder="Input Alamat" />
+                  <Input placeholder="Input Alamat" 
+                  value={this.state.address}
+                  onChangeText={value => this.setState({ address: value })}/>
                 </Item>
                 <Item rounded style={{marginTop: 20}}>
-                  <Input placeholder="Input Password" />
+                  <Input placeholder="Input Password" 
+                  value={this.state.password}
+                  onChangeText={value => this.setState({ password: value })}/>
                 </Item>
               </Body>
               <Right>
